@@ -34,7 +34,7 @@ const SignInForm = () => {
         event.preventDefault();
 
         try {
-            await signInAuthUserWithEmailAndPassword(email, password);
+            const { user } = await signInAuthUserWithEmailAndPassword(email, password);
             resetFormFields();
         } catch(err) {
             if(err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') {
@@ -46,15 +46,14 @@ const SignInForm = () => {
     }
 
     const signInWithGoogle = async () => {
-        const { user } = await signInWithGooglePopup();
-        await createUserDocumentFromAuth(user);
+        await signInWithGooglePopup();
     };
 
     return (
         <div className="sign-in-container">
             <h2>Already have an account?</h2>
             <span>Sign In With Your Email and Password</span>
-            <form onSubmit={() => handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <FormInput
                     label="Email"
                     type="email" 
