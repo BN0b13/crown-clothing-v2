@@ -7,15 +7,15 @@ import {
 } from './directory-item.styles';
 
 const DirectoryItem = ({ category }) => {
-    const { title, imageUrl } = category;
+    const { title, imageUrl, route } = category;
     const navigate = useNavigate();
 
-    const goToCheckoutHandler = () => {
-      navigate(`/shop/${ title }`);
+    const onNavigateHandler = () => {
+      navigate(route);
   }
 
     return (
-      <DirectoryItemContainer onClick={goToCheckoutHandler}>
+      <DirectoryItemContainer onClick={onNavigateHandler}>
         <BackgroundImage
         imageUrl={imageUrl}
         />
